@@ -40,7 +40,7 @@ pipeline {
       //  }
     //  }
       steps {
-        sh 'sam build --template ${SAM_TEMPLATE}'
+        sh 'sam build'
         withAWS(
             credentials: env.PIPELINE_USER_CREDENTIAL_ID,
             region: env.TESTING_REGION,
@@ -69,7 +69,7 @@ pipeline {
       //  }
     //  }
       steps {
-        sh 'sam build --template ${SAM_TEMPLATE}'
+        sh 'sam build'
         withAWS(
             credentials: env.PIPELINE_USER_CREDENTIAL_ID,
             region: env.TESTING_REGION,
