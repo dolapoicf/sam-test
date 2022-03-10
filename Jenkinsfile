@@ -30,17 +30,17 @@ pipeline {
     stage('build-and-deploy-feature') {
       // this stage is triggered only for feature branches (feature*),
       // which will build the stack and deploy to a stack named with branch name.
-      when {
-        branch 'feature*'
-      }
-      agent {
-        docker {
-          image 'public.ecr.aws/sam/build-provided'
-          args '--user 0:0 -v /var/run/docker.sock:/var/run/docker.sock'
-        }
-      }
+     // when {
+       // branch 'feature*'
+     // }
+     // agent {
+       // docker {
+        //  image 'public.ecr.aws/sam/build-provided'
+        //  args '--user 0:0 -v /var/run/docker.sock:/var/run/docker.sock'
+      //  }
+    //  }
       steps {
-        sh 'sam build --template ${SAM_TEMPLATE} --use-container'
+        sh 'sam build --template ${SAM_TEMPLATE}'
         withAWS(
             credentials: env.PIPELINE_USER_CREDENTIAL_ID,
             region: env.TESTING_REGION,
@@ -51,7 +51,6 @@ pipeline {
               --capabilities CAPABILITY_IAM \
               --region ${TESTING_REGION} \
               --s3-bucket ${TESTING_ARTIFACTS_BUCKET} \
-              --image-repository ${TESTING_IMAGE_REPOSITORY} \
               --no-fail-on-empty-changeset \
               --role-arn ${TESTING_CLOUDFORMATION_EXECUTION_ROLE}
           '''
@@ -60,17 +59,17 @@ pipeline {
     }
 
     stage('build-and-package') {
-      when {
-        branch env.MAIN_BRANCH
-      }
-      agent {
-        docker {
-          image 'public.ecr.aws/sam/build-provided'
-          args '--user 0:0 -v /var/run/docker.sock:/var/run/docker.sock'
-        }
-      }
+   //   when {
+    //    branch env.MAIN_BRANCH
+    //  }
+    //  agent {
+      //  docker {
+        //  image 'public.ecr.aws/sam/build-provided'
+        //  args '--user 0:0 -v /var/run/docker.sock:/var/run/docker.sock'
+      //  }
+    //  }
       steps {
-        sh 'sam build --template ${SAM_TEMPLATE} --use-container'
+        sh 'sam build --template ${SAM_TEMPLATE}'
         withAWS(
             credentials: env.PIPELINE_USER_CREDENTIAL_ID,
             region: env.TESTING_REGION,
@@ -105,14 +104,14 @@ pipeline {
     }
 
     stage('deploy-testing') {
-      when {
-        branch env.MAIN_BRANCH
-      }
-      agent {
-        docker {
-          image 'public.ecr.aws/sam/build-provided'
-        }
-      }
+    //  when {
+     //   branch env.MAIN_BRANCH
+    //  }
+    //  agent {
+    //    docker {
+      //    image 'public.ecr.aws/sam/build-provided'
+     //   }
+    //  }
       steps {
         withAWS(
             credentials: env.PIPELINE_USER_CREDENTIAL_ID,
@@ -125,7 +124,6 @@ pipeline {
               --capabilities CAPABILITY_IAM \
               --region ${TESTING_REGION} \
               --s3-bucket ${TESTING_ARTIFACTS_BUCKET} \
-              --image-repository ${TESTING_IMAGE_REPOSITORY} \
               --no-fail-on-empty-changeset \
               --role-arn ${TESTING_CLOUDFORMATION_EXECUTION_ROLE}
           '''
@@ -146,14 +144,14 @@ pipeline {
     // }
 
     stage('deploy-prod') {
-      when {
-        branch env.MAIN_BRANCH
-      }
-      agent {
-        docker {
-          image 'public.ecr.aws/sam/build-provided'
-        }
-      }
+  //    when {
+    //    branch env.MAIN_BRANCH
+   //   }
+   //   agent {
+     //   docker {
+       //   image 'public.ecr.aws/sam/build-provided'
+    //    }
+   //   }
       steps {
         // uncomment this to have a manual approval step before deployment to production
         // timeout(time: 24, unit: 'HOURS') {
@@ -170,7 +168,6 @@ pipeline {
               --capabilities CAPABILITY_IAM \
               --region ${PROD_REGION} \
               --s3-bucket ${PROD_ARTIFACTS_BUCKET} \
-              --image-repository ${PROD_IMAGE_REPOSITORY} \
               --no-fail-on-empty-changeset \
               --role-arn ${PROD_CLOUDFORMATION_EXECUTION_ROLE}
           '''
