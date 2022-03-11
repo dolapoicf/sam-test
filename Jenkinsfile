@@ -48,7 +48,7 @@ pipeline {
             role: env.TESTING_PIPELINE_EXECUTION_ROLE,
             roleSessionName: 'deploying-feature') {
           sh '''
-            sam deploy --stack-name $(echo ${BRANCH_NAME} --s3-bucket $S3_BUCKET
+            sam deploy --stack-name $(echo ${BRANCH_NAME} --s3-bucket $S3_BUCKET \
             --capabilities CAPABILITY_IAM \
               --region ${TESTING_REGION} \
               --s3-bucket ${TESTING_ARTIFACTS_BUCKET} \
