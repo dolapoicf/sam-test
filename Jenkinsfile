@@ -2,6 +2,7 @@ pipeline {
   agent any
   environment {
     PIPELINE_USER_CREDENTIAL_ID = 'ga0-hhs'
+    S3_BUCKET = 'dolapo-oig'
     SAM_TEMPLATE = 'template.yaml'
     MAIN_BRANCH = 'main'
     TESTING_STACK_NAME = 'dev-app'
@@ -47,8 +48,8 @@ pipeline {
             role: env.TESTING_PIPELINE_EXECUTION_ROLE,
             roleSessionName: 'deploying-feature') {
           sh '''
-            sam deploy --stack-name $(echo ${BRANCH_NAME} | tr -cd '[a-zA-Z0-9-]') \
-              --capabilities CAPABILITY_IAM \
+            sam deploy --stack-name $(echo ${BRANCH_NAME} --s3-bucket $S3_BUCKET
+            --capabilities CAPABILITY_IAM \
               --region ${TESTING_REGION} \
               --s3-bucket ${TESTING_ARTIFACTS_BUCKET} \
               --no-fail-on-empty-changeset \
