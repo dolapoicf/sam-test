@@ -49,7 +49,7 @@ pipeline {
             roleSessionName: 'deploying-feature') {
           sh '''
             sam deploy --stack-name $(echo ${BRANCH_NAME} --s3-bucket $S3_BUCKET \
-            --capabilities CAPABILITY_IAM \
+              --capabilities CAPABILITY_IAM \
               --region ${TESTING_REGION} \
               --s3-bucket ${TESTING_ARTIFACTS_BUCKET} \
               --no-fail-on-empty-changeset \
