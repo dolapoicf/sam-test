@@ -47,14 +47,14 @@ pipeline {
             region: env.TESTING_REGION,
             role: env.TESTING_PIPELINE_EXECUTION_ROLE,
             roleSessionName: 'deploying-feature') {
-          sh '''
-            sam deploy --stack-name dolapo-oig --s3-bucket $S3_BUCKET \
-              --capabilities CAPABILITY_IAM \
-              --region ${TESTING_REGION} \
-              --s3-bucket ${TESTING_ARTIFACTS_BUCKET} \
-              --no-fail-on-empty-changeset \
-              --role-arn ${TESTING_CLOUDFORMATION_EXECUTION_ROLE}
-          '''
+          
+          sh  'sam deploy --stack-name dolapo-oig1 -t sam-template.yaml --${S3-BUCKET} -- --capabilities CAPABILITY_IAM
+               //--capabilities CAPABILITY_IAM \
+              //--region ${TESTING_REGION} \
+              //--s3-bucket ${TESTING_ARTIFACTS_BUCKET} \
+              //--no-fail-on-empty-changeset \
+              //--role-arn ${TESTING_CLOUDFORMATION_EXECUTION_ROLE}
+          //'''
         }
       }
     }
