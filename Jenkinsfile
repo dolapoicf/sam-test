@@ -59,7 +59,7 @@ pipeline {
       }
     }
 
-    stage('build-and-package') {
+    stage('build-and-deploy staging env') {
    //   when {
     //    branch env.MAIN_BRANCH
     //  }
