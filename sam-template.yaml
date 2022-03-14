@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Resources: 
+  MyLambdaFunction:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Runtime: python3.7
+      Handler: index.handler
+      CodeUri: 
+        Bucket: dolapogpoc
+        Key: dolapog-poc-helloworld-07399e00-fb6f-4320-9e2b-888117e37399.zip
+        MyS3Upload:
+          Type: S3
+          Properties:
+            Bucke: !Ref MyS3Bucket
+            Events: s3:ObjectCreated:*
+  MyS3Bucket:
+    Type: "AWS::S3::Bucket"
+    Properties:
+      BucketName: goa45-upload
