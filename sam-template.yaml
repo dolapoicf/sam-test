@@ -17,4 +17,4 @@ Resources:
   MyS3Bucket:
     Type: "AWS::S3::Bucket"
     Properties:
-      BucketName: handler-oig-45-upload
+      BucketName: handlerupload45
