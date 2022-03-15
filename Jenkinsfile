@@ -48,7 +48,7 @@ pipeline {
             role: env.TESTING_PIPELINE_EXECUTION_ROLE,
             roleSessionName: 'deploying-feature') {
           
-          sh  'sam deploy --stack-name dolapo-oig3 -t sam-template.yaml --capabilities CAPABILITY_IAM'
+          sh  'sam deploy --stack-name dolapo-oig4 -t sam-template.yaml --capabilities CAPABILITY_IAM'
                //--capabilities CAPABILITY_IAM \
               //--region ${TESTING_REGION} \
               //--s3-bucket ${TESTING_ARTIFACTS_BUCKET} \
