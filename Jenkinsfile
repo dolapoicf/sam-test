@@ -44,7 +44,6 @@ pipeline {
           sh '''
            // sam package \
             //  --s3-bucket ${TESTING_ARTIFACTS_BUCKET} \
-            //  --image-repository ${TESTING_IMAGE_REPOSITORY} \
             //  --region ${TESTING_REGION} \
             //  --output-template-file packaged-testing.yaml
         }
