@@ -28,7 +28,7 @@ pipeline {
             role: env.TESTING_PIPELINE_EXECUTION_ROLE,
             roleSessionName: 'deploying-feature') {
           
-          sh  'sam deploy --stack-name dolapo-oigx1ab -t template.yaml --s3-bucket $TESTING_ARTIFACTS_BUCKET --capabilities CAPABILITY_IAM'
+          sh  'sam deploy --stack-name dolapo-oigx1ab -t template.yaml --s3-bucket $TESTING_ARTIFACTS_BUCKET --capabilities CAPABILITY_IAM  --no-fail-on-empty-changeset'
         }
       }
     }
@@ -42,7 +42,7 @@ pipeline {
             role: env.TESTING_PIPELINE_EXECUTION_ROLE,
             roleSessionName: 'testing-packaging') {
           
-         // sh 'sam deploy --stack-name dolapo-oigx1ab1 -t sam-template.yaml --s3-bucket $TESTING_ARTIFACTS_BUCKET --capabilities CAPABILITY_IAM'
+          sh 'sam deploy --stack-name dolapo-oigx1ab1 -t sam-template.yaml --s3-bucket $TESTING_ARTIFACTS_BUCKET --capabilities CAPABILITY_IAM  --no-fail-on-empty-changeset'   
         }
       }
        
