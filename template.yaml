@@ -13,8 +13,8 @@ Resources:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: /sam-app/hello_world/
-      Handler: app.lambda_handler
-      Runtime: python3.9
+      Handler: index.handler
+      Runtime: python3.6
       Architectures:
         - x86_64
       Events:
