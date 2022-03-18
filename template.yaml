@@ -4,7 +4,7 @@ Resources:
   MyLambdaFunctionOverHttps:
     Type: 'AWS::Serverless::Function'
     Properties:
-      Runtime: python3.6
+      Runtime: python3.7
       Handler: index.handler
       CodeUri: 
         Bucket: dolapo-oigapi
