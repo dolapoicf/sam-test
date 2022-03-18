@@ -28,7 +28,7 @@ pipeline {
             role: env.TESTING_PIPELINE_EXECUTION_ROLE,
             roleSessionName: 'deploying-feature') {
           
-          sh  'sam deploy --stack-name dolapo-oigx1a -t sam-template.yaml --s3-bucket $TESTING_ARTIFACTS_BUCKET --capabilities CAPABILITY_IAM'
+          sh  'sam deploy --stack-name dolapo-oigx1ac -t sam-template.yaml --s3-bucket $TESTING_ARTIFACTS_BUCKET --capabilities CAPABILITY_IAM'
         }
       }
     }
