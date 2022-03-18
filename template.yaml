@@ -13,7 +13,7 @@ Resources:
         - x86_64
       Events:
         HelloWorld:
-          Type: API
+          Type: Api
           Properties:
             Path: /hello
             Method: get
