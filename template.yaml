@@ -7,12 +7,12 @@ Resources:
       Runtime: python3.7
       Handler: index.handler
       CodeUri: 
-        Bucket: dolapo-oigapi
-        Key: HelloWorld-01b123d6-d332-4840-b9cd-211c6848c6c0.zip
-      Architectures:
+        Bucket: dolapo-blue
+        Key: dolapo-blue-a62e9506-3b3f-4ac7-9e80-bb7e94acba5c.zip
+        Architectures:
         - x86_64
       Events:
-        HelloWorld:
+        HelloWorld2:
           Type: Api
           Properties:
             Path: /hello
