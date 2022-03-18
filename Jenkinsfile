@@ -44,21 +44,10 @@ pipeline {
           
           sh 'sam deploy --stack-name dolapo-oigx1ab -t template.yaml --s3-bucket $TESTING_ARTIFACTS_BUCKET --capabilities CAPABILITY_IAM'
         }
-        }
-
-        withAWS(
-            credentials: env.PIPELINE_USER_CREDENTIAL_ID,
-            region: env.PROD_REGION,
-            role: env.PROD_PIPELINE_EXECUTION_ROLE,
-            roleSessionName: 'prod-packaging') {
-          sh '''
-            
-        }
-
-        archiveArtifacts artifacts: 'packaged-testing.yaml'
-        archiveArtifacts artifacts: 'packaged-prod.yaml'
       }
-    }
+       
+        }
+
 
     stage('deploy-testing') {
       steps {
