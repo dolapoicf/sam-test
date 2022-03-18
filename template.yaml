@@ -15,5 +15,5 @@ Resources:
         HelloWorld2:
           Type: Api
           Properties:
-            Path: /hello
+            Path: /hi
             Method: get
