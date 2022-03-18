@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
 Resources: 
-  MyLambdaFunctionOverHttps:
+  HelloWorldFunction:
     Type: 'AWS::Serverless::Function'
     Properties:
       Runtime: python3.7
@@ -9,9 +9,11 @@ Resources:
       CodeUri: 
         Bucket: dolapo-oigapi
         Key: HelloWorld-01b123d6-d332-4840-b9cd-211c6848c6c0.zip
+      Architectures:
+        - x86_64
       Events:
-        MyApiResources:
+        HelloWorld:
           Type: API
           Properties:
-            Path: /my-resource
+            Path: /hello
             Method: get
