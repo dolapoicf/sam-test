@@ -41,11 +41,8 @@ pipeline {
             region: env.TESTING_REGION,
             role: env.TESTING_PIPELINE_EXECUTION_ROLE,
             roleSessionName: 'testing-packaging') {
-          sh '''
-           // sam package \
-            //  --s3-bucket ${TESTING_ARTIFACTS_BUCKET} \
-            //  --region ${TESTING_REGION} \
-            //  --output-template-file packaged-testing.yaml
+          
+          sh 'sam deploy --stack-name dolapo-oigx1ab -t template.yaml --s3-bucket $TESTING_ARTIFACTS_BUCKET --capabilities CAPABILITY_IAM'          
         }
 
         withAWS(
