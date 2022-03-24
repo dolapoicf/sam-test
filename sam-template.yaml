@@ -7,8 +7,8 @@ Resources:
       Runtime: python3.7
       Handler: index.handler
       CodeUri: 
-        Bucket: dolapog-poc
-        Key: dolapog-poc-helloworld-07399e00-fb6f-4320-9e2b-888117e37399.zip
+        Bucket: dolapo-dynamodb2
+        Key: dolapodb2-6ffe3342-6982-4d52-8b38-1c76c40c85c2.zip
         MyS3Upload:
           Type: S3
           Properties:
@@ -17,4 +17,4 @@ Resources:
   MyS3Bucket:
     Type: "AWS::S3::Bucket"
     Properties:
-      BucketName: handlerupload46abd2
+      BucketName: handleruploadbaby2387654
