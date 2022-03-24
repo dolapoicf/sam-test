@@ -7,13 +7,13 @@ Resources:
       Runtime: python3.7
       Handler: index.handler
       CodeUri: 
-        Bucket: dolapo-blue
-        Key: dolapo-blue-a62e9506-3b3f-4ac7-9e80-bb7e94acba5c.zip
+        Bucket: dolapo-dynamodb3
+        Key: dolapodb3-8af9771a-e378-40e6-b41b-b9c67f5a4c70.zip
         Architectures:
         - x86_64
       Events:
         HelloWorld2:
           Type: Api
           Properties:
-            Path: /hi
+            Path: /items
             Method: get
